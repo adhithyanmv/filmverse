@@ -1,0 +1,290 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>{{ moviename }}</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'assets/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <script src="//www.youtube.com/player_api"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="{% static 'lity/dist/lity.css' %}" rel="stylesheet" />
+    <style>
+      .imgCont {
+        position: relative;
+      }
+
+      .image {
+        opacity: 1;
+        transition: 0.5s ease;
+        backface-visibility: hidden;
+      }
+
+      .middle {
+        transition: 0.5s ease;
+        background: rgb(255, 0, 0);
+        border-radius: 10%;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 10%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .imgCont:hover .image {
+        opacity: 0.3;
+      }
+
+      .imgCont:hover .middle {
+        opacity: 1;
+      }
+
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        margin-bottom: 7rem;
+        height: 27rem !important;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .card-img-top {
+        width: 90%;
+        height: 16rem;
+      }
+
+      .sim {
+        width: 100%;
+        height: 16rem;
+      }
+
+      .imgdiv {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header
+      id="header"
+      class="fixed-top d-flex align-items-center header-inner-pages"
+    >
+      <div class="container d-flex align-items-center justify-content-between">
+        <h1 class="logo"><a href="../../">FilmVerse</a></h1>
+        
+        <!-- .navbar -->
+      </div>
+      {% if exists %}
+      <form action="" method="post">
+        {% csrf_token %}
+      <div class="icon">
+        <button style="background-color:#FFD700; border-radius: 50%" type="submit"><i id="star" class="bi bi-star-fill" style="font-size: 1rem"></i></button>
+      </div>
+      </form>
+      {% else %}
+      <form action="" method="post">
+        {% csrf_token %}
+      <div class="icon">
+        <button style="background-color:#FFD700; border-radius: 50%" type="submit"><i id="star" class="bi bi-star" style="font-size: 1rem"></i></button>
+      </div>
+      </form>
+      {% endif %}
+      <div style="margin-right: 10%" id="toggle" onclick="toggle(this)">
+        <i class="indicator"></i>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <main id="main">
+      <!-- ======= Breadcrumbs ======= -->
+      <section id="breadcrumbs" class="breadcrumbs">
+        <h1 style="text-align: center">
+          <b><em>{{ moviename }} ({{ moviedate }})</em></b>
+        </h1>
+      </section>
+      <!-- End Breadcrumbs -->
+
+      <!-- ======= Portfolio Details Section ======= -->
+      <section id="portfolio-details" class="portfolio-details">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8" style="margin: auto">
+              <div class="portfolio-details-slider swiper">
+                <div class="swiper-wrapper imgCont align-items-center">
+                  <img src="{{ mvpic }}" class="image" />
+                  <a
+                    href="{{ mvytlink }}"
+                    class="middle btn"
+                    data-lity
+                    ><i
+                      class="bi bi-play"
+                      style="font-size: 1.5rem; color: white"
+                    ></i
+                    crossorigin
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="container">
+        <div>
+          <div class="portfolio-info">
+            <h2 style="text-align: center"><b>Overview</b></h2>
+            <p>{{ mvdesc }}</p>
+            <h6><em>{{ runtime }} Min | Language : {{ language }}</em></h6>
+            <h6><em>genre: {% for x in genres %} {{ x }}, {% endfor %}</em></h6>
+          </div>
+        </div>
+        <!-- ../../static/assets/img/profile.png -->
+        <div class="row" style="margin-top: 4rem">
+          <h3 style="text-align: center; margin-bottom: 4rem;"><b>Cast</b></h3>
+          {% for x in casts %}
+          <div class="col">
+            <div class="card" style="height: auto; width: 15rem; height: 22rem">
+              <div class="imgdiv">
+              {% if x.charimg %}
+              <img
+                src="https://image.tmdb.org/t/p/original/{{ x.charimg }}"
+                class="card-img-top"
+              />
+              {% else %}
+              <img
+                src="../../static/assets/img/profile.png"
+                class="card-img-top"
+              />
+              {% endif %}
+              </div>
+              <div class="card-body">
+                <a href="../../artist/{{ x.artistid}}"
+                  ><h4>{{ x.realname }}</h4></a
+                >
+                <p>{{ x.charname }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- similar movies -->
+        <div class="row" style="margin-top: 4rem;">
+          <h3 style="text-align: center;  margin-bottom: 4rem"><b>Similar Movies</b></h3>
+          {% for x in similar %}
+          <div class="col">
+            <div class="card" style="height: auto; width: 15rem; height: 22rem">
+              <div class="imgdiv">
+              {% if x.simImg %}
+              <img
+                src="https://image.tmdb.org/t/p/original/{{ x.simImg }}"
+                class="sim"
+              />
+              {% else %}
+              <img
+                src="../../static/assets/img/profile.png"
+                class="sim"
+              />
+              {% endif %}
+              </div>
+              <div class="card-body">
+                {% if x.type == "movie" %}
+                <a href="../../movie/{{ x.mvId }}"
+                  ><h4>{{ x.name }}</h4></a
+                >
+                {% else %}
+                <a href="../../tv/{{ x.mvId }}"
+                  ><h4>{{ x.name }}</h4></a
+                >
+                {% endif %}
+                <p>{{ x.first_air_date }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- End Portfolio Details Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- <div id="preloader"></div> -->
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'lity/dist/lity.js' %}"></script>
+    <script src="{% static 'lity/vendor/jquery.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/details.js' %}"></script>
+  </body>
+</html>

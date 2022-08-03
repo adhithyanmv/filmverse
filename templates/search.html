@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>FilmVerse</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'assets/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+
+
+    <style>
+      .disabled {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center justify-content-between">
+        <h1 class="logo"><a href="../../">FilmVerse</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href=index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav id="navbar" class="navbar">
+          <i class="bi bi-list mobile-nav-toggle"></i>
+          <div id="toggle" onclick="toggle(this)">
+            <i class="indicator"></i>
+          </div>
+        </nav>
+        
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- End Hero -->
+
+    <main id="main" style="margin-top: 10%">
+      <!-- ======= Icon Boxes Section ======= -->
+      <section id="icon-boxes" class="icon-boxes">
+        <div class="container">
+          <div class="row moviesContainer">
+            <h2 style="text-align: center; margin-bottom: 4rem"><b>Movies</b></h2>
+            <!-- start -->
+            {% for x in movies %}
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv1">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                {% if x.mvimg %}
+                  <img src="https://image.tmdb.org/t/p/original{{ x.mvimg }}" allow="autoplay" class="mvimg mvimg0 img-thumbnail" />
+                {% else %}
+                  <img src="../static/assets/img/profile.png" allow="autoplay" class="mvimg mvimg0 img-thumbnail" />
+                {% endif %}
+                </div>
+                <br />
+                <a class="movienamelink" href="../movie/{{ x.mvid }}">{{ x.mvtitle }}<h4 class="title moviename"></h4></a>
+                <p class="description overview">{{ x.mvoverview }}</p>
+              </div>
+            </div>
+            {% endfor %}
+            <h2 style="text-align: center; margin-top: 10%; margin-bottom: 4rem"><b>Tv</b></h2>
+            {% for x in tvs %}
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv2">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                {% if x.tvimg %}
+                  <img src="https://image.tmdb.org/t/p/original{{ x.tvimg }}" allow="autoplay" class="mvimg mvimg0 img-thumbnail" />
+                {% else %}
+                  <img src="../static/assets/img/profile.png" allow="autoplay" class="mvimg mvimg0 img-thumbnail" />
+                {% endif %}
+                </div>
+                <br />
+              
+                <a class="movienamelink" href="../tv/{{ x.tvid }}"><h4 class="title moviename">{{ x.tvtitle }}</h4></a>
+                <p class="description overview">{{ x.tvoverview }}</p>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- end -->
+          </div>
+        </div>
+      </section>
+      <!-- End Icon Boxes Section -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/search.js' %}"></script>
+  </body>
+</html>

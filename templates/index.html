@@ -1,0 +1,779 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>FilmVerse</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon" />
+    <link
+      href="{% static 'assets/img/apple-touch-icon.png' %}"
+      rel="apple-touch-icon"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/remixicon/remixicon.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+
+
+    <style>
+      .disabled {
+        pointer-events: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container-fluid d-flex align-items-center justify-content-between">
+        <h1 class="logo" style="margin-right: 2rem;"><a href="">FILMVERSE</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href=index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <form style="width: 25rem" action="search" class="form-outline" method="get">
+          <input required type="text" class="form-control" placeholder="Search for Movie / Tv" aria-label="Recipient's username" aria-describedby="basic-addon2" name="query" style="width: 100%">
+        </form>
+        <nav id="navbar" class="navbar">
+          <ul style="margin-left: -1rem">
+            <li><a class="nav-link popular scrollto active">Popular</a></li>
+            <li><a class="nav-link tr scrollto">Top Rated</a></li>
+            <li><a class="nav-link uc scrollto">Upcoming</a></li>
+            {% if user.is_authenticated %}
+              <li style="color: rgb(37, 183, 183)"><a href="wishlist">{{ firstname }}'s wishlist</a></li>
+              <li><a href="accounts/logout" class="btn btn-danger nav-link uc scrollto" style="border: 2px solid">Logout</a></li>
+            {% else %}
+              <li><a href="accounts/register" class="btn btn-dark nav-link uc scrollto" style="border: 2px solid white">Login</a></li>
+            {% endif %}
+            </form>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+          <div id="toggle" onclick="toggle(this)">
+            <i class="indicator"></i>
+          </div>
+        </nav>
+        
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex justify-cntent-center align-items-center">
+      <div
+        id="heroCarousel"
+        data-bs-interval="5000"
+        class="container carousel carousel-fade"
+        data-bs-ride="carousel"
+      >
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="carousel-container">
+            <a class="bannerLink" href=""><h2 class="animate__animated animate__fadeInDown">
+              <span class="bannermoviename"></span>
+            </h2>
+            </a>
+            <p class="animate__animated animate__fadeInUp bannermoviedesc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Hero -->
+
+    <main id="main">
+      <!-- ======= Icon Boxes Section ======= -->
+      <section id="icon-boxes" class="icon-boxes">
+        <div class="container">
+          <div class="row moviesContainer">
+            <!-- start -->
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv1">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" allow="autoplay" class="mvimg mvimg0 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv2">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg1 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv3">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg2 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv4">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg3 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv5">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg4 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv6">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg5 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv7">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg6 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv8">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg7 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv9">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg8 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv10">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg9 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv11">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg10 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv12">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg11 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv13">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg12 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv14">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg13 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv15">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg14 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv16">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg15 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv17">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg16 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv18">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg17 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv19">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg18 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-3 moviecol d-flex align-items-stretch mb-5 mb-lg-0"
+              data-aos="fade-up"
+              style="margin-top: 20px"
+            >
+              <div class="icon-box mv mv20">
+                <div
+                  class="col-md-4"
+                  style="width: 100%; padding-right: 0px; padding-left: 0px"
+                >
+                  <img src="" class="mvimg mvimg19 img-thumbnail" />
+                </div>
+                <br />
+                <div class="icon"><i class="rate bi bi-star" style="font-size: 1rem"></i></i></div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <div class="icon">
+                  <i class="rate bi bi-star" style="font-size: 1rem"></i>
+                </div>
+                <a class="movienamelink" href=""><h4 class="title moviename"></h4></a>
+                <p class="description overview"></p>
+              </div>
+            </div>
+            <!-- end -->
+          </div>
+        </div>
+      </section>
+      <nav class="bottom-nav" aria-label="Page navigation example" style="margin-bottom: 70px">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link pageleft disabled" href="#1" tabindex="-1"
+              >&laquo;</a
+            >
+          </li>
+          <li class="page-item page-link pagecurr">1</li>
+          <li class="page-item">
+            <a class="page-link pageright" href="#2">&raquo;</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- End Icon Boxes Section -->
+
+
+
+    <div class="overlay">
+      <div class="d-flex justify-content-center">  
+        <div class="spinner-border spin text-primary" role="status" style="width: 3rem; height: 3rem; z-index: 20;">
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>
