@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,10 +79,10 @@ WSGI_APPLICATION = 'filmverse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'filmversedb',
-        'USER' : 'postgres',
-        'PASSWORD': '1234',
-        'HOST' : '127.0.0.1',
+        'NAME': 'd39n7ub1amasom',
+        'USER' : 'dttjfggjxsptdp',
+        'PASSWORD': 'cdf9bacc7abf89ef9fc754151e38ef21d4b299433def582398afd058b62d7f14',
+        'HOST' : 'ec2-44-207-126-176.compute-1.amazonaws.com',
         'PORT' : '5432'
     }
 }
@@ -131,3 +132,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+django_heroku.settings(locals())
