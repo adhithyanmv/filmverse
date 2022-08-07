@@ -2,7 +2,6 @@ const pageleft = document.querySelector(".pageleft");
 const pageright = document.querySelector(".pageright");
 const pagecurr = document.querySelector(".pagecurr");
 const videoTrailer = document.querySelector(".videoTrailer");
-const overview = document.querySelectorAll(".overview");
 const overlay = document.querySelector(".overlay");
 const upcoming = document.querySelector(".uc");
 const popular = document.querySelector(".popular");
@@ -47,9 +46,6 @@ function makeDark() {
     e.style.backgroundColor = "black";
   });
   document.querySelector("body").style.backgroundColor = "black";
-  overview.forEach((e) => {
-    e.style.color = "white";
-  });
 }
 
 function makeDefault() {
@@ -63,9 +59,6 @@ function makeDefault() {
     e.style.backgroundColor = "white";
   });
   document.querySelector("body").style.backgroundColor = "white";
-  overview.forEach((e) => {
-    e.style.color = "#777777";
-  });
 }
 
 function toggle(x) {
@@ -114,7 +107,6 @@ function setMovies(pageNo = 1) {
   let datas = movieDealer(category(), pageNo);
   let movieNames = document.querySelectorAll(".moviename");
   let movieImgs = document.querySelectorAll(".mvimg");
-  let overview = document.querySelectorAll(".overview");
   let stars = document.querySelectorAll(".rate");
   let movienamelink = document.querySelectorAll(".movienamelink");
   let starsArr = convertStars(stars);
@@ -135,7 +127,6 @@ function setMovies(pageNo = 1) {
       if (curr.media_type == "tv") {
         movienamelink[i].setAttribute("href", `tv/${curr.id}/`);
       }
-      overview[i].textContent = curr.overview ? curr.overview : "";
       let currStars = starsArr[i];
       let totalRate = 0;
       if (Math.floor(curr.vote_average - 1) % 2 == 1) {
